@@ -69,12 +69,12 @@ def test_run_hek293t_standard(live_client: PepkioClient):
     assert result.permalink
     assert result.result is not None
     assert result.result.get("has_blocking_errors") is False
-    plates = result.result.get("plates")
-    assert isinstance(plates, list)
-    assert len(plates) >= 1
-    plate_96w = next((p for p in plates if p.get("format") == "96W"), None)
+    vessels = result.result.get("vessels")
+    assert isinstance(vessels, list)
+    assert len(vessels) >= 1
+    plate_96w = next((p for p in vessels if p.get("format") == "96W"), None)
     assert plate_96w is not None
-    assert plate_96w.get("cells_per_well") is not None
+    assert plate_96w.get("cells_per_vessel") is not None
     assert plate_96w.get("volume_uL") is not None
 
 
@@ -92,9 +92,9 @@ def test_run_cho_384w(live_client: PepkioClient):
     assert result.status == "completed"
     assert result.result is not None
     assert result.result.get("has_blocking_errors") is False
-    plates = result.result.get("plates")
-    assert isinstance(plates, list)
-    plate_384w = next((p for p in plates if p.get("format") == "384W"), None)
+    vessels = result.result.get("vessels")
+    assert isinstance(vessels, list)
+    plate_384w = next((p for p in vessels if p.get("format") == "384W"), None)
     assert plate_384w is not None
     badges = plate_384w.get("badges") or []
     assert "below_pipette" in badges
