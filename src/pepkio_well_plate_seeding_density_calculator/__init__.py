@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Python client for Pepkio well-plate-seeding-density-calculator."""
 
 from .client import PepkioClient
